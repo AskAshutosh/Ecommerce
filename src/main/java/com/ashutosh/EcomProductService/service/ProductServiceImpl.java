@@ -1,6 +1,8 @@
 package com.ashutosh.EcomProductService.service;
 
 import com.ashutosh.EcomProductService.Model.Product;
+import com.ashutosh.EcomProductService.dto.ProductListResponseDTO;
+import com.ashutosh.EcomProductService.dto.ProductRequestDTO;
 import com.ashutosh.EcomProductService.dto.ProductResponseDTO;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class ProductServiceImpl implements ProductService{
 
     @Override
-    public ProductResponseDTO getAllProducts() {
+    public ProductListResponseDTO getAllProducts() {
         return null;
     }
 
@@ -18,17 +20,16 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product createProduct(Product product) {
+    public ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO) {
         return null;
+    }
+    @Override
+    public boolean deleteProduct(int id) {
+        return false;
     }
 
     @Override
-    public Product deleteProduct(int id) {
-        return null;
-    }
-
-    @Override
-    public Product updateProduct(int id, Product product) {
+    public ProductResponseDTO updateProduct(int id, ProductRequestDTO product) {
         return null;
     }
 }

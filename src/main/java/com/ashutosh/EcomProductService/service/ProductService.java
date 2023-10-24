@@ -1,15 +1,17 @@
 package com.ashutosh.EcomProductService.service;
 
 import com.ashutosh.EcomProductService.Model.Product;
+import com.ashutosh.EcomProductService.dto.ProductListResponseDTO;
+import com.ashutosh.EcomProductService.dto.ProductRequestDTO;
 import com.ashutosh.EcomProductService.dto.ProductResponseDTO;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface ProductService {
-    ProductResponseDTO getAllProducts();
+    ProductListResponseDTO getAllProducts();
     ProductResponseDTO getProductsById(int id);
-    Product createProduct(Product product);
-    Product deleteProduct(int id);
-    Product updateProduct(int id, Product product);
+    ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO);
+    boolean deleteProduct(int id);
+    ProductResponseDTO updateProduct(int id, ProductRequestDTO product);
 
 }

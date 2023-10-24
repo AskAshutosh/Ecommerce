@@ -1,23 +1,26 @@
 package com.ashutosh.EcomProductService.controller;
 
+import com.ashutosh.EcomProductService.dto.ProductListResponseDTO;
+import com.ashutosh.EcomProductService.dto.ProductRequestDTO;
 import com.ashutosh.EcomProductService.dto.ProductResponseDTO;
 import com.ashutosh.EcomProductService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
 public class ProductController {
-    @Autowired
-    @Qualifier("fakeProductService")
+
 
     ProductService productService;
+    @Autowired //optional when using constructor injection
+    public ProductController(@Qualifier("fakeProductService")ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/products")
     public ResponseEntity getAllProducts(){
@@ -42,8 +45,8 @@ public class ProductController {
         return ResponseEntity.ok(products);
 
  */
-        ProductResponseDTO productResponseDTO = productService.getAllProducts();
-        return ResponseEntity.ok(productResponseDTO);
+        ProductListResponseDTO productResponse = productService.getAllProducts();
+        return ResponseEntity.ok(productResponse);
     }
 
     @GetMapping("/products/{id}")
@@ -52,6 +55,26 @@ public class ProductController {
         return ResponseEntity.ok(productResponseDTO);
     }
 
+    @PostMapping("/products")
+    public ResponseEntity createProduct(@RequestBody ProductRequestDTO productRequestDTO){
+        ProductResponseDTO productResponseDTO = productService.createProduct(productRequestDTO);
+        return ResponseEntity.ok(productResponseDTO);
+    }
 
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity deleteProduct(@PathVariable("id") Integer id){
+        Boolean response = productService.deleteProduct(id);
+        return ResponseEntity.ok(response);
+        //TODO : Delete is showing true even for non existing product; fix logic for delete
+    }
+    /*
+    @PatchMapping("/products/{id}")
+    public ResponseEntity updateProduct(@PathVariable("id") Integer id,
+                                        @RequestBody ProductRequestDTO productRequestDTO){
+        ProductResponseDTO productResponseDTO = productService.updateProduct(id, productRequestDTO);
+        return ResponseEntity.ok(productResponseDTO);
+        //TODO: Update patch function
+    }
+*/
 
 }
