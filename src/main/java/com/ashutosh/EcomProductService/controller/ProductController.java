@@ -67,7 +67,7 @@ public class ProductController {
         return ResponseEntity.ok(response);
         //TODO : Delete is showing true even for non existing product; fix logic for delete
     }
-    /*
+
     @PatchMapping("/products/{id}")
     public ResponseEntity updateProduct(@PathVariable("id") Integer id,
                                         @RequestBody ProductRequestDTO productRequestDTO){
@@ -75,6 +75,5 @@ public class ProductController {
         return ResponseEntity.ok(productResponseDTO);
         //TODO: Update patch function
     }
-*/
 
 }

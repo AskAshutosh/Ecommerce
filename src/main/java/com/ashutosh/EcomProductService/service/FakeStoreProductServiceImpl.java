@@ -61,6 +61,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
     @Override
     public ProductResponseDTO updateProduct(int id, ProductRequestDTO productRequestDTO) {
         String updateProductUrl = "https://fakestoreapi.com/products/"+id;
+        ProductResponseDTO updatedProduct = getProductsById(id);
         RestTemplate restTemplate = restTemplateBuilder.build();
         ProductResponseDTO productResponse =
                 restTemplate.patchForObject(updateProductUrl, productRequestDTO, ProductResponseDTO.class);
