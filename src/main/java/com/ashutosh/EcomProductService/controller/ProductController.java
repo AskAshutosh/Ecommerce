@@ -3,6 +3,7 @@ package com.ashutosh.EcomProductService.controller;
 import com.ashutosh.EcomProductService.dto.ProductListResponseDTO;
 import com.ashutosh.EcomProductService.dto.ProductRequestDTO;
 import com.ashutosh.EcomProductService.dto.ProductResponseDTO;
+import com.ashutosh.EcomProductService.exception.ProductNotFoundException;
 import com.ashutosh.EcomProductService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -50,7 +51,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity getProductById(@PathVariable("id") Integer id){
+    public ResponseEntity getProductById(@PathVariable("id") Integer id) throws ProductNotFoundException {
         ProductResponseDTO productResponseDTO = productService.getProductsById(id);
         return ResponseEntity.ok(productResponseDTO);
     }
@@ -70,7 +71,7 @@ public class ProductController {
 
     @PatchMapping("/products/{id}")
     public ResponseEntity updateProduct(@PathVariable("id") Integer id,
-                                        @RequestBody ProductRequestDTO productRequestDTO){
+                                        @RequestBody ProductRequestDTO productRequestDTO) throws ProductNotFoundException {
         ProductResponseDTO productResponseDTO = productService.updateProduct(id, productRequestDTO);
         return ResponseEntity.ok(productResponseDTO);
         //TODO: Update patch function
