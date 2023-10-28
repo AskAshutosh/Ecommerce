@@ -1,1 +1,13 @@
-1.
+Date 29-10-23
+1. Added FakeStoreClient class ->which will make method calls to 3rd party apis instead of service class
+2.In FakeStoreClient class added createProduct functions -> TODO : Logic for updateProduct API
+3. Made DTOs for FakeStoreClient class -> Request and Response DTOs
+4. Added Mapper class to convert ProductRequestDTOs to FakeStoreResponseDTOs and fakeStoreProductResponseToProductResponse
+
+Application flow:
+Controller <-> Service <-> Client(Mapper to convert) <-> DTOs <-> 3rd Party
+
+5. Added rest of the CRUD functions in Client class except Update
+6. Created ProductUtils class for utility functions eg. isNull (to check if the object is null or not)
+7. Created custom exception ProductNotFoundException
+8. Added custom exception to Global Handler ("Global Controller Advice").
